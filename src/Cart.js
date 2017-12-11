@@ -7,12 +7,18 @@ module.exports = class Cart {
 
     addItem(item, quantity) {
         this.items.push(item);
-        this.lineItems.push({item: item.name, quantity: quantity});
+        const lineItemPrice = item.price * quantity;
+        this.lineItems.push({item: item.name, quantity: quantity, price: lineItemPrice});
         this.totalPrice += item.price * quantity;
     }
 
     itemQuantities() {
         let itemQuantities = this.lineItems.map(lineItem => `${lineItem.item} - x${lineItem.quantity}`);
         return itemQuantities;
+    }
+
+    itemizedList() {
+        let itemizedList = this.lineItems.map(lineItem => `${lineItem.item} x${lineItem.quantity} - $${lineItem.price}.00`)
+        return itemizedList;
     }
 }

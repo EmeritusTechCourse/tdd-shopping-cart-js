@@ -37,11 +37,31 @@ describe('Cart', () => {
         const handbag = new Item('Handbag', 500.00, false);
         const pumps = new Item('Pumps', 450.00, false);
         const expected = ['Handbag - x3', 'Pumps - x2'];
-
-        // Exercise
         cart.addItem(handbag, 3);
         cart.addItem(pumps, 2);
+    
+        // Exercise
         const actual = cart.itemQuantities();
+
+        // Assert
+        expect(actual).to.deep.equal(expected);
+    })
+
+    // Given I have an empty cart, when I add items, then I expect
+    // itemizedList() reflect the items I have added along with their
+    // price and quantity.
+
+    it('should return an itemized list', () => {
+        // Setup
+        const cart = new Cart();
+        const handbag = new Item('Handbag', 500.00, false);
+        const pumps = new Item('Pumps', 450.00, false);
+        const expected = ['Handbag x3 - $1500.00', 'Pumps x2 - $900.00'];    
+        cart.addItem(handbag, 3);
+        cart.addItem(pumps, 2);
+    
+        // Exercise
+        const actual = cart.itemizedList();
 
         // Assert
         expect(actual).to.deep.equal(expected);
