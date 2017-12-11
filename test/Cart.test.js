@@ -67,4 +67,23 @@ describe('Cart', () => {
         expect(actual).to.deep.equal(expected);
     })
 
+    // Given I have an empty cart, when I add more than one of an item, 
+    // then I expect totalPrice to reflect both the item price and quantity.
+    
+    it('should calculate correct totalPrice', () => {
+        // Setup
+        const cart = new Cart();
+        const handbag = new Item('Handbag', 500.00, false);
+        const pumps = new Item('Pumps', 450.00, false);
+        const expected = 2400;
+        cart.addItem(handbag, 3);
+        cart.addItem(pumps, 2);
+    
+        // Exercise
+        const actual = cart.totalPrice;
+        
+        // Assert
+        expect(actual).to.deep.equal(expected);    
+
+    })
 })
