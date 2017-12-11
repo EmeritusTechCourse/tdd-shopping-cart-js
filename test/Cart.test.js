@@ -27,4 +27,24 @@ describe('Cart', () => {
         expect(cart.totalPrice).to.be.equal(1000.00);
     })
 
+    // Given I have an empty cart, when I add more than one of an item,
+    // then I expect itemQuantities() to show the number of items I have 
+    // added.
+
+    it('should know the quantities of each item in my cart', () => {
+        // Setup
+        const cart = new Cart();
+        const handbag = new Item('Handbag', 500.00, false);
+        const pumps = new Item('Pumps', 450.00, false);
+        const expected = ['Handbag - x3', 'Pumps - x2'];
+
+        // Exercise
+        cart.addItem(handbag, 3);
+        cart.addItem(pumps, 2);
+        const actual = cart.itemQuantities();
+
+        // Assert
+        expect(actual).to.deep.equal(expected);
+    })
+
 })
