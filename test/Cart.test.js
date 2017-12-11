@@ -84,6 +84,27 @@ describe('Cart', () => {
         
         // Assert
         expect(actual).to.deep.equal(expected);    
+    })
 
+    // Given I have a cart with items that are not on sale, when I add 
+    // items that are on sale, I expect onSaleItems() to include only 
+    // the items on sale.
+
+    it('should return only items that are on sale', () => {
+        // Setup
+        const cart = new Cart();
+        const handbag = new Item('Handbag', 500.00, true);
+        const pendant = new Item('Pendant', 500.00, true);
+        const pumps = new Item('Pumps', 450.00, false);
+        const expected = ['Handbag', 'Pendant'];
+        cart.addItem(handbag, 3);
+        cart.addItem(pumps, 2);
+        cart.addItem(pendant, 1);
+    
+        // Exercise
+        const actual = cart.onSaleItems();
+
+        // Assert
+        expect(actual).to.deep.equal(expected);
     })
 })
