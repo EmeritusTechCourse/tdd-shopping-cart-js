@@ -12,7 +12,20 @@ describe('Cart', () => {
         expect(cart.totalPrice).to.be.equal(0)
     })
 
-    it('should reflect total price', () => {
+    it('should add a single item', () => {
+        // setup
+        const cart = new Cart()
+        const expected = 10000;
+
+        // exercise
+        const item = new Item('Watch', 10000, false);
+        cart.addItem(item, 1);
+
+        // assert
+        expect(cart.totalPrice).to.equal(expected);
+    })
+
+    it('should add a multiple items', () => {
         // setup
         const cart = new Cart()
         const expected = 20000;
@@ -23,5 +36,22 @@ describe('Cart', () => {
 
         // assert
         expect(cart.totalPrice).to.equal(expected);
+    })
+
+    it('should only allow Items to be inserted', () => {
+        // setup
+        const cart = new Cart()
+        const expected = 20000;
+
+        // exercise
+        let ex;
+        try {
+            cart.addItem(7, 2);
+        } catch(err) {
+            ex = err;
+        }
+
+        // assert
+        expect(ex instanceof Error).to.equal(true);
     })
 })
