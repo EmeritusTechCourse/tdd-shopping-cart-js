@@ -2,15 +2,21 @@ const Cart = require('../src/Cart.js');
 const Item = require('../src/Item');
 
 describe('Cart', () => {
+    let cart;
+
+    beforeEach(() => {
+        cart = new Cart();
+    });
+
     test('should initialize as empty', () => {
-        const cart = new Cart();
+        // const cart = new Cart();
 
         expect(cart.items).toEqual([]);
         expect(cart.totalPrice).toEqual(0);
     });
 
     test('should add items to cart', () => {
-        const cart = new Cart();
+        // const cart = new Cart();
         const hat = new Item('hat', 40, false);
 
         cart.addItem(hat, 2);
@@ -19,7 +25,7 @@ describe('Cart', () => {
     });
 
     test('should return itemized list', () => {
-        const cart = new Cart();
+        // const cart = new Cart();
         const shoes = new Item('shoes', 80, false);
         const coat = new Item('coat', 200, false);
 
@@ -32,7 +38,7 @@ describe('Cart', () => {
     });
 
     test('should return array of item quantities', () => {
-        const cart = new Cart();
+        // const cart = new Cart();
         const shoes = new Item('shoes', 80, false);
         const coat = new Item('coat', 200, false);
 
@@ -45,7 +51,7 @@ describe('Cart', () => {
     });
 
     test('should return array of sale items', () => {
-        const cart = new Cart();
+        // const cart = new Cart();
         const shoes = new Item('shoes', 60, true);
         const coat = new Item('coat', 200, false);
 

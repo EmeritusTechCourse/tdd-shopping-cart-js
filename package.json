@@ -8,10 +8,6 @@
     "test": "jest"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
-    "mocha": "^3.3.0"
-  },
-  "dependencies": {
     "jest": "^24.5.0"
   }
 }
